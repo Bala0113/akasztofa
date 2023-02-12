@@ -2,7 +2,8 @@ import random
 from tkinter import *
 from tkinter import ttk, messagebox
 
-from PIL import Image
+import self as self
+from PIL import Image, ImageTk
 
 ''' Megszáolja a szöveges fájl sorait, majd 0 és a sorokszáma között generál egy random számot. 
     És azt a szót választja, ahol generált szám megegyezik a sorának számával.'''
@@ -30,12 +31,17 @@ def startGame():
         imageNumber = str(12 - health)
         fileName = 'image' + imageNumber + '.png'
         im = Image.open(fileName)
-        test = PhotoImage(im)
 
-        label1 = Label(image=test)
-        label1.image = test
+        frame = Frame(gamePage, width=300, height=300)
+        frame.pack()
+        frame.place(anchor='center', relx=0.5, rely=0.5)
+
+        img = ImageTk.PhotoImage(Image.open("image1.png"))
+
+        label = Label(frame, image=img)
+        label.pack()
+        
         """
-
     def gameOver():
         messagebox.showerror("Vesztettél", "Vesztettél! A szó a/z " + word + "volt")
         gamePage.destroy()
@@ -146,7 +152,7 @@ def startGame():
     Label(gamePage, text=emptyList,
           font=("Courier", 30)).place(x=25, y=320)
 
-    mainloop()
+    gamePage.mainloop()
 
 
 """Menü ablak"""
