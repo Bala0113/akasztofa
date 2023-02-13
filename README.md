@@ -18,5 +18,5 @@ Ha kitaláltuk a játékot akkor ugyanez történik "Nyertél" felírattal.
 > - **check():** A szövegmezőből kimenti a betűt, ellenőrzi a formátumát + letterChek indexei alapján ellenőrzi a tippet. Ha talál a szóban: usedLetter-hez és emptyList-hez hozzáadja a betűt + winCheck. Ha nem talál -1health, + animation() + ha health=0 -> gameOver()
 > - **letterChek**: megkapja a betűt, végig fut a word-ön, vissza ad egy listát az indexekről, amelyben a betű helyét tárolja.
 > - **winCheck**: összehasonlítja az emptyList és letterList elemeit, ha megegyeznek ->win() 
-> - **animation()**: összerakja a health segítségével a fájlnevet majd képernyőre dobja
+> - **animation()**: összerakja a health segítségével a fájlnevet (image1 -> image13) majd képernyőre dobja
 > - **gameOver() + win()**: feldob egy ablakot, kilép
