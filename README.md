@@ -4,7 +4,8 @@
 Akasztófa  játék - Meg van adva egy szó hossza és tippelnünk kell hogy milyen betűk szerepelhetnek az adott szóban, ha van a szóban akkor az megjelenik, ha nem akkor vesztünk egy életet és elkezd kirajzolódni az akasztófa. 12 próbálkozás van. 
 
  ## Indítása
-A program indítása után a menü ablak ugrik fel, itt a játék gombra kattintva elindul a játék, a súgó gombra kattintva 
+A program indítása után a menü ablak ugrik fel, itt a játék gombra kattintva elindul a játék, a súgó gombra kattintva felugrik egy ablak a játék leírásáról.
+A Játék indítása után a program legenerál egy szót, amelynek csak a hosszát látjuk. A 
  ## Müködése
 >A program 
 > - Post - Új felvétel
