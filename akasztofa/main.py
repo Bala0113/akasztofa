@@ -23,7 +23,7 @@ def startGame():
     health = 13
     word = randomWord()
 
-    """Játék vége"""
+    """Akasztófa animáció"""
 
     def animation(health):
         fileName = "image" + str(14 - health) + ".png"
@@ -31,6 +31,8 @@ def startGame():
         Label(gamePage, image=im).place(x=28, y=0)
         gamePage.mainloop()
 
+    """Játék vége"""   
+     
     def gameOver():
 
         messagebox.showerror("Vesztettél", "Vesztettél! A szó a/z " + word + "volt")
