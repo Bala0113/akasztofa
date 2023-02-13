@@ -2,9 +2,6 @@ import random
 from tkinter import *
 from tkinter import ttk, messagebox
 
-import self as self
-from PIL import Image, ImageTk
-
 ''' Megszáolja a szöveges fájl sorait, majd 0 és a sorokszáma között generál egy random számot. 
     És azt a szót választja, ahol generált szám megegyezik a sorának számával.'''
 
@@ -20,37 +17,32 @@ def randomWord():
 
 
 def startGame():
+    global main
+    main.destroy()
     global health
-    health = 12
+    health = 13
     word = randomWord()
+
     """Játék vége"""
 
     def animation(health):
-        pass
-        """
-        imageNumber = str(12 - health)
-        fileName = 'image' + imageNumber + '.png'
-        im = Image.open(fileName)
+        fileName = "image" + str(14 - health) + ".png"
+        im = PhotoImage(file=fileName)
+        Label(gamePage, image=im).place(x=28, y=0)
+        gamePage.mainloop()
 
-        frame = Frame(gamePage, width=300, height=300)
-        frame.pack()
-        frame.place(anchor='center', relx=0.5, rely=0.5)
-
-        img = ImageTk.PhotoImage(Image.open("image1.png"))
-
-        label = Label(frame, image=img)
-        label.pack()
-        
-        """
     def gameOver():
+
         messagebox.showerror("Vesztettél", "Vesztettél! A szó a/z " + word + "volt")
         gamePage.destroy()
+        exit()
 
     """Játék vége"""
 
     def win():
         messagebox.showinfo(title='Nyertél', message='Nyertél! A szó a/z ' + word + ' volt')
         gamePage.destroy()
+        exit()
 
     """Ellenőrzi a két lista elemeit (letterList,emptyList), ha ugyanazok akkor nyert a játékos"""
 
@@ -87,7 +79,7 @@ def startGame():
     def check():
 
         e_letter = e1.get()
-        if e_letter.isalpha() and len(e_letter) == 1:
+        if e_letter.isalpha() and len(e_letter) == 1 and e_letter not in usedLetter:
             index = letterCheck(e_letter)
             if (len(index)) > 1:
                 index.remove(-1)
@@ -98,6 +90,9 @@ def startGame():
                 mainLabel = Label
                 mainLabel(gamePage, text=emptyList,
                           font=("Courier", 30)).place(x=25, y=320)
+                usedLetter.append(e_letter)
+                Label(gamePage, text=usedLetter,
+                      font=("Arial", 12)).place(x=15, y=550)
                 winCheck()
 
             else:
@@ -105,14 +100,14 @@ def startGame():
                 health -= 1
                 Label(gamePage, text='Próbálkozások száma: \n' + str(health),
                       font=("Arial", 12)).place(x=15, y=450)
+                usedLetter.append(e_letter)
                 Label(gamePage, text=usedLetter,
                       font=("Arial", 12)).place(x=15, y=550)
                 if health == 0: gameOver()
                 animation(health)
-
-            usedLetter.append(e_letter)
         else:
-            messagebox.showerror("Hibás bemenet!", "Csak 1 karakter hosszú betűt adhasz meg!")
+            messagebox.showerror("Hibás bemenet!",
+                                 "Csak 1 karakter hosszú betűt adhasz meg, amit még nem használtál fel!")
 
     """A szó listába mentése betűnként"""
     letterList = []
@@ -152,6 +147,12 @@ def startGame():
     Label(gamePage, text=emptyList,
           font=("Courier", 30)).place(x=25, y=320)
 
+    """Akasztófa"""
+    im = PhotoImage(file="image1.png")
+    hatter_label = Label(image=im)
+    hatter_label.place(x=0, y=0)
+    hatter_label.pack()
+
     gamePage.mainloop()
 
 
@@ -159,7 +160,8 @@ def startGame():
 
 
 def home():
-    main = Tk()
+    """main = Tk()"""
+    global main
     main.geometry('360x150')
     main.resizable(width=False, height=False)
     main.title('Akasztófa menü - YCWCAZ')
@@ -180,5 +182,6 @@ def home():
 
 
 """BEGINNING"""
+main = Tk()
 home()
 health = 0
